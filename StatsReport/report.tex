@@ -1,0 +1,122 @@
+% 'draft' mode can be used to speed up compilation
+\documentclass[twoside,a4paper,final]{hcmut-report}
+\usepackage{codespace}
+
+% Draft watermark
+% https://github.com/callegar/LaTeX-draftwatermark
+
+% Encodings
+\usepackage{gensymb,textcomp}
+
+% Better tables
+% Wide tables go to https://tex.stackexchange.com/q/332902
+\usepackage{array,longtable,multicol,multirow,siunitx,tabularx}
+
+% Better enum
+\usepackage{enumitem}
+
+% Graphics
+\usepackage{caption,float}
+
+% Add options for figures, like max width, framing, etc.
+\usepackage[export]{adjustbox}
+
+% References
+% Use \Cref{} instead of \ref{}
+\usepackage[nameinlink]{cleveref}
+
+% FOR DEMONSTRATION PURPOSES, REMOVE IN PRODUCTION
+\usepackage{mwe}
+
+% Sub-preambles
+% https://github.com/MartinScharrer/standalone
+
+% Configurations
+\coursename{Probability and Statistics}
+\reporttype{Project Report}
+\title{Predictive Modeling of Internet Advertisement Characteristics}
+\instructor{&Nguyen Tien Dung&}
+\stuname{%
+  & Pham Viet Hao       & 2352297 \\
+  & Nguyen Minh Hoang   & 2352352 \\
+  & Lu Thuan Hung       & 2352429 \\
+  & Thuong Dinh Hung    & 2352444 \\
+  & Huynh Nhat Huy      & 2352381 \\
+}
+
+% Allow page breaks inside align* environment
+%\allowdisplaybreaks{}
+
+% Makes a lot of things blue, avoid at all costs
+%\everymath{\color{blue}}
+
+% Set depth of numbering for counters
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+
+% Rename some sections
+%\AtBeginDocument{\renewcommand*{\contentsname}{Contents}}
+%\AtBeginDocument{\renewcommand*{\refname}{References}}
+%\AtBeginDocument{\renewcommand*{\bibname}{References}}
+
+% Custom commands
+%\newcommand*\mean[1]{\bar{#1}}
+
+\lstdefinestyle{terminal}{
+    backgroundcolor=\color{black!90},
+    basicstyle=\small\color{white}\ttfamily,
+    numbers=none,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    columns=fullflexible,  % Changed from flexible to fullflexible
+    frame=single,
+    framesep=3pt,
+    rulecolor=\color{black!70}
+}
+
+\lstnewenvironment{terminalblock}[1][]{%
+  \lstset{style={}}
+  \lstset{style=terminal}%
+}{%
+  % Reset happens automatically at end of environment
+}
+
+\begin{document}
+\coverpage%
+
+\section*{Member list \& Workload}
+\newcounter{memberrowno}
+\setcounter{memberrowno}{0}
+\begin{center}
+  \begin{tabular}{>{\stepcounter{memberrowno}\thememberrowno}llcc}
+    \toprule
+    \multicolumn{1}{c}{\textbf{No.}} & \textbf{Full name} & \textbf{Student ID} & \textbf{Contribution} \\
+    \midrule
+                                     & Pham Viet Hao       & 2352297 & 20\%                       \\
+                                     & Nguyen Minh Hoang   & 2352352 & 20\%                       \\
+                                     & Lu Thuan Hung       & 2352429 & 20\%                       \\
+                                     & Thuong Dinh Hung    & 2352444 & 20\%                       \\
+                                     & Huynh Nhat Huy      & 2352381 & 20\%                       \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+%\clearpage
+
+\tableofcontents
+
+
+\clearpage
+
+\input{chapters/1_PrjkOverview.tex}
+\input{chapters/2_Foundation.tex}
+\input{chapters/3_DataPreprocess.tex}
+\input{chapters/4_Descriptive.tex}
+\input{chapters/5_Inferential.tex}
+\input{chapters/6_DiscusAndExtend.tex}
+\input{chapters/7_SrcAndCode.tex}
+
+\bibliographystyle{plain}
+\bibliography{refs/example.bib}
+\nocite{*}
+
+\end{document}
